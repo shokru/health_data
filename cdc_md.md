@@ -1,23 +1,23 @@
 ``` r
 library(tidyverse)
 load("cdc_health.RData")
-head(cdc_health, 10)
+head(cdc_health, 10) %>% select(-education) # To save space
 ```
 
 <div class="kable-table">
 
-| gender | race                              | age | weight | height | exercise | health    |
-| :----- | :-------------------------------- | --: | -----: | -----: | :------- | :-------- |
-| Female | Black                             |  80 |     70 |    157 | No       | Good      |
-| Female | White                             |  70 |     49 |    163 | Yes      | Fair      |
-| Female | Black                             |  67 |     86 |    165 | Yes      | Good      |
-| Female | White                             |  80 |     50 |    152 | No       | Very good |
-| Male   | White                             |  71 |    113 |    185 | Yes      | Very good |
-| Male   | White                             |  72 |    109 |    188 | Yes      | Excellent |
-| Male   | White                             |  77 |     78 |    180 | Yes      | Good      |
-| Female | White                             |  71 |     43 |    160 | No       | Poor      |
-| Female | White                             |  70 |     59 |    163 | Yes      | Very good |
-| Male   | American Indian or Alaskan Native |  55 |     82 |    188 | No       | Poor      |
+| gender | race  | age | weight | height | employment     | income    | urban | exercise | smoker | fruit              | coverage | health    |
+| :----- | :---- | --: | -----: | -----: | :------------- | :-------- | :---- | :------- | :----- | :----------------- | :------- | :-------- |
+| Female | Black |  80 |     70 |    157 | Retired        | $15K-$20K | Yes   | No       | Yes    | Daily              | Yes      | Good      |
+| Female | White |  70 |     49 |    163 | Retired        | $25K-$35K | Yes   | Yes      | No     | A few times a year | Yes      | Fair      |
+| Female | Black |  67 |     86 |    165 | Retired        | $50K-$75K | Yes   | Yes      | No     | Daily              | Yes      | Good      |
+| Male   | White |  71 |    113 |    185 | Retired        | $50K-$75K | No    | Yes      | Yes    | Daily              | Yes      | Very good |
+| Male   | White |  77 |     78 |    180 | Retired        | $25K-$35K | No    | Yes      | Yes    | Daily              | Yes      | Good      |
+| Female | White |  71 |     43 |    160 | Unable to work | $15K-$20K | Yes   | No       | Yes    | Weekly             | Yes      | Poor      |
+| Female | White |  70 |     59 |    163 | Retired        | $50K-$75K | Yes   | Yes      | Yes    | Daily              | Yes      | Very good |
+| Male   | White |  76 |     70 |    165 | Retired        | \>$75K    | Yes   | Yes      | Yes    | Weekly             | Yes      | Excellent |
+| Male   | White |  72 |     88 |    180 | Unable to work | $25K-$35K | No    | Yes      | No     | Daily              | Yes      | Fair      |
+| Female | White |  51 |     78 |    173 | Self-employed  | $35K-$50K | Yes   | Yes      | No     | Daily              | Yes      | Excellent |
 
 </div>
 
@@ -25,19 +25,58 @@ head(cdc_health, 10)
 summary(cdc_health)
 ```
 
-    ##     gender                race             age           weight      
-    ##  Male  :174287   White      :281829   Min.   :18.0   Min.   : 23.00  
-    ##  Female:198614   Hispanic   : 31126   1st Qu.:42.0   1st Qu.: 68.00  
-    ##                  Black      : 27218   Median :59.0   Median : 79.00  
-    ##                  Asian      :  8036   Mean   :55.5   Mean   : 82.33  
-    ##                  Multiracial:  7673   3rd Qu.:70.0   3rd Qu.: 93.00  
-    ##                  Unsure     :  6303   Max.   :80.0   Max.   :281.00  
-    ##                  (Other)    : 10716                                  
-    ##      height      exercise           health      
-    ##  Min.   : 91.0   Yes:273314   Excellent: 59192  
-    ##  1st Qu.:163.0   No : 99587   Very good:122985  
-    ##  Median :170.0                Good     :118043  
-    ##  Mean   :170.1                Fair     : 52954  
-    ##  3rd Qu.:178.0                Poor     : 19727  
-    ##  Max.   :241.0                                  
-    ##
+    ##     gender                                      race             age       
+    ##  Male  :141354   White                            :230017   Min.   :18.00  
+    ##  Female:154196   Black                            : 21612   1st Qu.:42.00  
+    ##                  Hispanic                         : 20389   Median :58.00  
+    ##                  Multiracial                      :  6076   Mean   :55.11  
+    ##                  Asian                            :  6010   3rd Qu.:69.00  
+    ##                  American Indian or Alaskan Native:  4671   Max.   :80.00  
+    ##                  (Other)                          :  6775                  
+    ##      weight           height                                 education     
+    ##  Min.   : 23.00   Min.   : 91.0   Never attended or kindergarten  :   219  
+    ##  1st Qu.: 68.00   1st Qu.:163.0   Elementary                      :  5018  
+    ##  Median : 81.00   Median :170.0   Some high school                : 11854  
+    ##  Mean   : 83.13   Mean   :170.5   High school graduate            : 74337  
+    ##  3rd Qu.: 95.00   3rd Qu.:178.0   Some college or technical school: 84049  
+    ##  Max.   :277.00   Max.   :241.0   College graduate                :120073  
+    ##                                                                            
+    ##               employment           income       urban        exercise    
+    ##  Employed for wages:128061   >$75K    :106925   Yes:203462   Yes:220355  
+    ##  Retired           : 88419   $50K-$75K: 48677   No : 92088   No : 75195  
+    ##  Self-employed     : 27972   $35K-$50K: 41168                            
+    ##  Unable to work    : 20188   $25K-$35K: 29661                            
+    ##  Homemaker         : 12351   $20K-$25K: 25101                            
+    ##  Student           :  6921   $15K-$20K: 19009                            
+    ##  (Other)           : 11638   (Other)  : 25009                            
+    ##  smoker                          fruit        coverage           health      
+    ##  Yes:128115   Daily                 :151199   Yes:272736   Excellent: 47671  
+    ##  No :167435   Weekly                : 89117   No : 22814   Very good:100713  
+    ##               Less than once a month:  1767                Good     : 92493  
+    ##               A few times a year    : 42879                Fair     : 39780  
+    ##               Never                 : 10588                Poor     : 14893  
+    ##                                                                              
+    ## 
+
+# Distribution of health values through the ages
+
+``` r
+cdc_health %>%
+    ggplot(aes(x = age, fill = health)) + geom_bar(position="fill")
+```
+
+![](cdc_md_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+# Impact of income and exercise
+
+``` r
+cdc_health %>%
+    group_by(income, exercise) %>%
+    summarise(avg_health = mean(as.numeric(health))) %>%
+    ggplot(aes(x = income, y = avg_health, fill = exercise)) + geom_col(position = "dodge") +
+    scale_fill_manual(values = c("#FF861B", "#1184FF")) + ylab("Average health score")
+```
+
+    ## `summarise()` regrouping output by 'income' (override with `.groups` argument)
+
+![](cdc_md_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
