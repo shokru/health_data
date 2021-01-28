@@ -1,4 +1,4 @@
-# Snapshot at the data
+# Snapshot of the data
 
 ``` r
 library(tidyverse)
