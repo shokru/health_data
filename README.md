@@ -2,7 +2,8 @@
 
 Source: https://www.cdc.gov/brfss/annual_data/annual_2019.html
 
-Unordered categorical (nominal), ordered categorical (ordinal), numeric.
+Variable type includes: unordered categorical (nominal), ordered categorical (ordinal), numeric.   
+There are 295,550 observations in total.
 
 |**Variable** | Type | Defintion |  
 |---|---|---| 
