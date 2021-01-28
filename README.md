@@ -1,5 +1,6 @@
 # Dataset from the CDC for relatable data science.
 
+The data is a snapshot of the 2019 Behavioral Risk Factor Surveillance System survey from the US Center for Disease Control & Prevention (CDC).    
 Source: https://www.cdc.gov/brfss/annual_data/annual_2019.html
 
 Variable type includes: unordered categorical (nominal), ordered categorical (ordinal), numeric.   
