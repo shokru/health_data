@@ -1,3 +1,5 @@
+# Snapshot at the data
+
 ``` r
 library(tidyverse)
 load("cdc_health.RData")
@@ -20,6 +22,8 @@ head(cdc_health, 10) %>% select(-education, -coverage, -fruit) # To save space
 | Female | White |  51 |     78 |    173 | Self-employed  | $35K-$50K | Yes   | Yes      | No     | Excellent |
 
 </div>
+
+# Descriptive statistics
 
 ``` r
 summary(cdc_health)
@@ -65,7 +69,7 @@ cdc_health %>%
     ggplot(aes(x = age, fill = health)) + geom_bar(position="fill")
 ```
 
-![](cdc_md_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](cdc_md_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 # Impact of income and exercise
 
@@ -77,4 +81,4 @@ cdc_health %>%
     scale_fill_manual(values = c("#FF861B", "#1184FF")) + ylab("Average health score")
 ```
 
-![](cdc_md_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](cdc_md_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
