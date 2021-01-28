@@ -1,23 +1,23 @@
 ``` r
 library(tidyverse)
 load("cdc_health.RData")
-head(cdc_health, 10) %>% select(-education) # To save space
+head(cdc_health, 10) %>% select(-education, -coverage) # To save space
 ```
 
 <div class="kable-table">
 
-| gender | race  | age | weight | height | employment     | income    | urban | exercise | smoker | fruit              | coverage | health    |
-| :----- | :---- | --: | -----: | -----: | :------------- | :-------- | :---- | :------- | :----- | :----------------- | :------- | :-------- |
-| Female | Black |  80 |     70 |    157 | Retired        | $15K-$20K | Yes   | No       | Yes    | Daily              | Yes      | Good      |
-| Female | White |  70 |     49 |    163 | Retired        | $25K-$35K | Yes   | Yes      | No     | A few times a year | Yes      | Fair      |
-| Female | Black |  67 |     86 |    165 | Retired        | $50K-$75K | Yes   | Yes      | No     | Daily              | Yes      | Good      |
-| Male   | White |  71 |    113 |    185 | Retired        | $50K-$75K | No    | Yes      | Yes    | Daily              | Yes      | Very good |
-| Male   | White |  77 |     78 |    180 | Retired        | $25K-$35K | No    | Yes      | Yes    | Daily              | Yes      | Good      |
-| Female | White |  71 |     43 |    160 | Unable to work | $15K-$20K | Yes   | No       | Yes    | Weekly             | Yes      | Poor      |
-| Female | White |  70 |     59 |    163 | Retired        | $50K-$75K | Yes   | Yes      | Yes    | Daily              | Yes      | Very good |
-| Male   | White |  76 |     70 |    165 | Retired        | \>$75K    | Yes   | Yes      | Yes    | Weekly             | Yes      | Excellent |
-| Male   | White |  72 |     88 |    180 | Unable to work | $25K-$35K | No    | Yes      | No     | Daily              | Yes      | Fair      |
-| Female | White |  51 |     78 |    173 | Self-employed  | $35K-$50K | Yes   | Yes      | No     | Daily              | Yes      | Excellent |
+| gender | race  | age | weight | height | employment     | income    | urban | exercise | smoker | fruit              | health    |
+| :----- | :---- | --: | -----: | -----: | :------------- | :-------- | :---- | :------- | :----- | :----------------- | :-------- |
+| Female | Black |  80 |     70 |    157 | Retired        | $15K-$20K | Yes   | No       | Yes    | Daily              | Good      |
+| Female | White |  70 |     49 |    163 | Retired        | $25K-$35K | Yes   | Yes      | No     | A few times a year | Fair      |
+| Female | Black |  67 |     86 |    165 | Retired        | $50K-$75K | Yes   | Yes      | No     | Daily              | Good      |
+| Male   | White |  71 |    113 |    185 | Retired        | $50K-$75K | No    | Yes      | Yes    | Daily              | Very good |
+| Male   | White |  77 |     78 |    180 | Retired        | $25K-$35K | No    | Yes      | Yes    | Daily              | Good      |
+| Female | White |  71 |     43 |    160 | Unable to work | $15K-$20K | Yes   | No       | Yes    | Weekly             | Poor      |
+| Female | White |  70 |     59 |    163 | Retired        | $50K-$75K | Yes   | Yes      | Yes    | Daily              | Very good |
+| Male   | White |  76 |     70 |    165 | Retired        | \>$75K    | Yes   | Yes      | Yes    | Weekly             | Excellent |
+| Male   | White |  72 |     88 |    180 | Unable to work | $25K-$35K | No    | Yes      | No     | Daily              | Fair      |
+| Female | White |  51 |     78 |    173 | Self-employed  | $35K-$50K | Yes   | Yes      | No     | Daily              | Excellent |
 
 </div>
 
@@ -76,7 +76,5 @@ cdc_health %>%
     ggplot(aes(x = income, y = avg_health, fill = exercise)) + geom_col(position = "dodge") +
     scale_fill_manual(values = c("#FF861B", "#1184FF")) + ylab("Average health score")
 ```
-
-    ## `summarise()` regrouping output by 'income' (override with `.groups` argument)
 
 ![](cdc_md_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
