@@ -1,23 +1,23 @@
 ``` r
 library(tidyverse)
 load("cdc_health.RData")
-head(cdc_health, 10) %>% select(-education, -coverage) # To save space
+head(cdc_health, 10) %>% select(-education, -coverage, -fruit) # To save space
 ```
 
 <div class="kable-table">
 
-| gender | race  | age | weight | height | employment     | income    | urban | exercise | smoker | fruit              | health    |
-| :----- | :---- | --: | -----: | -----: | :------------- | :-------- | :---- | :------- | :----- | :----------------- | :-------- |
-| Female | Black |  80 |     70 |    157 | Retired        | $15K-$20K | Yes   | No       | Yes    | Daily              | Good      |
-| Female | White |  70 |     49 |    163 | Retired        | $25K-$35K | Yes   | Yes      | No     | A few times a year | Fair      |
-| Female | Black |  67 |     86 |    165 | Retired        | $50K-$75K | Yes   | Yes      | No     | Daily              | Good      |
-| Male   | White |  71 |    113 |    185 | Retired        | $50K-$75K | No    | Yes      | Yes    | Daily              | Very good |
-| Male   | White |  77 |     78 |    180 | Retired        | $25K-$35K | No    | Yes      | Yes    | Daily              | Good      |
-| Female | White |  71 |     43 |    160 | Unable to work | $15K-$20K | Yes   | No       | Yes    | Weekly             | Poor      |
-| Female | White |  70 |     59 |    163 | Retired        | $50K-$75K | Yes   | Yes      | Yes    | Daily              | Very good |
-| Male   | White |  76 |     70 |    165 | Retired        | \>$75K    | Yes   | Yes      | Yes    | Weekly             | Excellent |
-| Male   | White |  72 |     88 |    180 | Unable to work | $25K-$35K | No    | Yes      | No     | Daily              | Fair      |
-| Female | White |  51 |     78 |    173 | Self-employed  | $35K-$50K | Yes   | Yes      | No     | Daily              | Excellent |
+| gender | race  | age | weight | height | employment     | income    | urban | exercise | smoker | health    |
+| :----- | :---- | --: | -----: | -----: | :------------- | :-------- | :---- | :------- | :----- | :-------- |
+| Female | Black |  80 |     70 |    157 | Retired        | $15K-$20K | Yes   | No       | Yes    | Good      |
+| Female | White |  70 |     49 |    163 | Retired        | $25K-$35K | Yes   | Yes      | No     | Fair      |
+| Female | Black |  67 |     86 |    165 | Retired        | $50K-$75K | Yes   | Yes      | No     | Good      |
+| Male   | White |  71 |    113 |    185 | Retired        | $50K-$75K | No    | Yes      | Yes    | Very good |
+| Male   | White |  77 |     78 |    180 | Retired        | $25K-$35K | No    | Yes      | Yes    | Good      |
+| Female | White |  71 |     43 |    160 | Unable to work | $15K-$20K | Yes   | No       | Yes    | Poor      |
+| Female | White |  70 |     59 |    163 | Retired        | $50K-$75K | Yes   | Yes      | Yes    | Very good |
+| Male   | White |  76 |     70 |    165 | Retired        | \>$75K    | Yes   | Yes      | Yes    | Excellent |
+| Male   | White |  72 |     88 |    180 | Unable to work | $25K-$35K | No    | Yes      | No     | Fair      |
+| Female | White |  51 |     78 |    173 | Self-employed  | $35K-$50K | Yes   | Yes      | No     | Excellent |
 
 </div>
 
