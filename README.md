@@ -1,5 +1,4 @@
-# health_data
-Dataset from the CDC for relatable data science
+# Dataset from the CDC for relatable data science.
 
 
 Unordered categorical (nominal), ordered categorical (ordinal), numeric.
