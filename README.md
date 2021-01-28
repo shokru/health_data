@@ -1,6 +1,6 @@
 # Dataset from the CDC for relatable data science.
 
-![https://www.cdc.gov/brfss/annual_data/annual_2019.html](https://www.cdc.gov/brfss/annual_data/annual_2019.html)
+Comes from: https://www.cdc.gov/brfss/annual_data/annual_2019.html
 
 Unordered categorical (nominal), ordered categorical (ordinal), numeric.
 
