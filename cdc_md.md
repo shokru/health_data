@@ -135,7 +135,7 @@ fit <- train_matrix %>%
 tictoc::toc()
 ```
 
-    ## 22.106 sec elapsed
+    ## 16.921 sec elapsed
 
 Histogram of predicted health scores.
 
@@ -153,9 +153,9 @@ health_2019[which(min(predict(fit, train_features))==predict(fit, train_features
 
 <div class="kable-table">
 
-| gender | race  | age | weight | height | education                        | employment         | income | urban | exercise | smoker | fruit | coverage | health    |
-| :----- | :---- | --: | -----: | -----: | :------------------------------- | :----------------- | :----- | :---- | :------- | :----- | :---- | :------- | :-------- |
-| Male   | White |  28 |     79 |    211 | Some college or technical school | Employed for wages | \>$75K | No    | Yes      | No     | Daily | Yes      | Very good |
+| gender | race  | age | weight | height | education        | employment         | income | urban | exercise | smoker | fruit               | coverage | health    |
+| :----- | :---- | --: | -----: | -----: | :--------------- | :----------------- | :----- | :---- | :------- | :----- | :------------------ | :------- | :-------- |
+| Male   | White |  56 |     75 |    208 | College graduate | Employed for wages | \>$75K | Yes   | Yes      | No     | A few times a month | Yes      | Excellent |
 
 </div>
 
@@ -168,36 +168,37 @@ healthy_young_woman <- tibble(
     weight = 60,
     height = 170,
     education = 3,
-    income = 3,
+    income = 5,
     urban = 1,
     exercise = 1,
     smoker = 2,
     fruit = 1,
     coverage = 1
 ) %>% as.matrix()
+
+predict(fit, healthy_young_woman)    # Rich young exercising non-smoking female
+```
+
+    ## [1] 1.221705
+
+``` r
 overweight_old_man <- tibble(
     gender = 1,
     age = 78,
     weight = 120,
     height = 180,
     education = 3,
-    income = 3,
+    income = 1,
     urban = 1,
     exercise = 2,
     smoker = 1,
     fruit = 3,
     coverage = 0
 ) %>% as.matrix()
-predict(fit, healthy_young_woman)    # Young exercising nosmoking female
+predict(fit, overweight_old_man)  # Poor old overweight smoking male
 ```
 
-    ## [1] 1.36897
-
-``` r
-predict(fit, overweight_old_man)  
-```
-
-    ## [1] 2.773975
+    ## [1] 2.800684
 
 ## Feature importance
 
