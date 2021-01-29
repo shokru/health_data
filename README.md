@@ -16,7 +16,7 @@ There are 295,550 observations in total in the most recent vintage (2019).
 | **employment** | nominal | employment situation of the respondent |  
 | **income** | ordinal | annual income group of the respondent (household level) |  
 | **urban** | binary | whether respondent lives in metropolitan county (Yes or No)  |    
-| **exercise** | binary | whether or not the respondent practiced exercise in the past month  | 
+| **exercise** | binary | whether or not the respondent practiced exercise in the past month (Yes or No)  | 
 | **smoker** | binary | whether the respondent has smoked 100 cigarettes in his life (Yes or No)  |    
 | **fruit** | ordinal | frequency at which respondent eats fruits |  
 | **coverage**|  binary | whether the respondent has any health care coverage (Yes or No) | 
