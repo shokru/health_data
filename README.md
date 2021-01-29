@@ -4,7 +4,7 @@ The data is a snapshot of the 2015-2019 Behavioral Risk Factor Surveillance Syst
 
 Variable type includes: unordered categorical (nominal), ordered categorical (ordinal), binary, numeric.    
 Only 2 missing points per observations were allowed (other instances were discarded).   
-The full dataset (2015-2019) has over 2M rows. There are 295,550 observations in total in the most recent vintage (2019).
+The full dataset (2015-2019) has over 2M rows. There are 295,550 observations in total in the most recent vintage (2019) when retaining instances with no missing point.
 
 |**Variable** | Type | Defintion |  Comments |
 |---|---|---|---|
