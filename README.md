@@ -3,7 +3,7 @@
 The data is a snapshot of the 2019 Behavioral Risk Factor Surveillance System survey from the US Center for Disease Control & Prevention (CDC). The source file can be accessed at: https://www.cdc.gov/brfss/annual_data/annual_2019.html
 
 Variable type includes: unordered categorical (nominal), ordered categorical (ordinal), binary, numeric.   
-There are 295,550 observations in total.
+There are 295,550 observations in total in the most recent vintage (2019).
 
 |**Variable** | Type | Defintion |  
 |---|---|---| 
