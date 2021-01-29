@@ -7,6 +7,7 @@ There are 295,550 observations in total in the most recent vintage (2019).
 
 |**Variable** | Type | Defintion |  
 |---|---|---| 
+|**year** | numerical | year the survey was carried out |
 | **gender** | binary | respondent gender (Male or Female) |   
 | **race** | nominal | respondent race  |   
 | **age** | numeric | respondent age in years, capped above 80 |   
