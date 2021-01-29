@@ -1,6 +1,6 @@
 # Health survey from the CDC for relatable data science.
 
-The data is a snapshot of the 2015-2019 Behavioral Risk Factor Surveillance System (BRFSS) survey from the US Center for Disease Control & Prevention (CDC). The source files can be accessed at: https://www.cdc.gov/brfss/
+The sample is a snapshot of the 2015-2019 Behavioral Risk Factor Surveillance System (BRFSS) survey from the US Center for Disease Control & Prevention (CDC). The source files can be accessed at: https://www.cdc.gov/brfss/
 
 Variable types include: unordered categorical (nominal), ordered categorical (ordinal), binary and numeric - see table below.    
 Only 2 missing points per observations were allowed (other instances were discarded).   
