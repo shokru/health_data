@@ -17,7 +17,7 @@ The full dataset (2015-2019) has over 2M rows. There are 295,550 observations in
 | **education** | ordinal | maximum education level reached by the respondent  |  |
 | **employment** | nominal | employment situation of the respondent |    |
 | **income** | ordinal | annual income group of the respondent (household level) |   |
-| **urban** | binary | whether respondent lives in metropolitan county (Yes or No)  | Low coverage 2016 & 2017 |     
+| **urban** | binary | whether respondent lives in metropolitan county (Yes or No)  | Low coverage in 2016 & 2017 |     
 | **exercise** | binary | whether the respondent practiced exercise in the past month (Yes or No)  |  | 
 | **smoker** | binary | whether the respondent has smoked 100 cigarettes in his life (Yes or No)  |     |  
 | **fruit** | ordinal | frequency at which respondent eats fruits |  Not covered in 2016 & 2018 |  
