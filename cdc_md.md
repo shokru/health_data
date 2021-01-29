@@ -74,6 +74,9 @@ health_2019 %>%
 
 # Impact of income and exercise
 
+We recall that the code is 1 = Excellent, …, 5 = Poor. Health assessment
+scores are averaged across subgroups and shown below.
+
 ``` r
 health_2019 %>%
     group_by(income, exercise) %>%
@@ -135,7 +138,7 @@ fit <- train_matrix %>%
 tictoc::toc()
 ```
 
-    ## 16.921 sec elapsed
+    ## 18.347 sec elapsed
 
 Histogram of predicted health scores.
 
@@ -153,9 +156,9 @@ health_2019[which(min(predict(fit, train_features))==predict(fit, train_features
 
 <div class="kable-table">
 
-| gender | race  | age | weight | height | education        | employment         | income | urban | exercise | smoker | fruit               | coverage | health    |
-| :----- | :---- | --: | -----: | -----: | :--------------- | :----------------- | :----- | :---- | :------- | :----- | :------------------ | :------- | :-------- |
-| Male   | White |  56 |     75 |    208 | College graduate | Employed for wages | \>$75K | Yes   | Yes      | No     | A few times a month | Yes      | Excellent |
+| gender | race  | age | weight | height | education        | employment         | income | urban | exercise | smoker | fruit | coverage | health |
+| :----- | :---- | --: | -----: | -----: | :--------------- | :----------------- | :----- | :---- | :------- | :----- | :---- | :------- | :----- |
+| Male   | White |  32 |     67 |    191 | College graduate | Employed for wages | \>$75K | Yes   | Yes      | No     | Daily | No       | Good   |
 
 </div>
 
@@ -179,7 +182,7 @@ healthy_young_woman <- tibble(
 predict(fit, healthy_young_woman)    # Rich young exercising non-smoking female
 ```
 
-    ## [1] 1.221705
+    ## [1] 1.298436
 
 ``` r
 overweight_old_man <- tibble(
@@ -198,7 +201,7 @@ overweight_old_man <- tibble(
 predict(fit, overweight_old_man)  # Poor old overweight smoking male
 ```
 
-    ## [1] 2.800684
+    ## [1] 2.961659
 
 ## Feature importance
 
