@@ -11,6 +11,9 @@ The shared files are:
 - the cleaned 2019 vintage ([RData, 3Mo](/data/health_2019.RData))   
 - the cleaned 2019 vintage ([zipped CSV, 4Mo](/data/health_2019.csv.zip))    
 
+Examples of applications: [here](cdc_md.md).     
+Variable description below.
+
 |**Variable** | Type | Defintion |  Comments |
 |---|---|---|---|
 |**year** | numeric | year the survey was carried out (2015-2019)| |  
