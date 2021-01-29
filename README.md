@@ -14,7 +14,7 @@ The shared files are:
 
 **DISCLAIMER**: the data is for pedagocial use only.  
 
-Examples of applications via R code can be found [here](cdc_md.md).     
+More information & examples of applications via R code can be found [here](cdc_md.md).     
 Variable description below.
 
 |**Variable** | Type | Defintion |  Comments |
