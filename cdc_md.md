@@ -2,8 +2,8 @@
 
 ``` r
 library(tidyverse)
-load("cdc_health.RData")
-head(cdc_health, 10) %>% select(-education, -coverage, -fruit) # To save space
+load("data/health_2019.RData")
+head(health_2019, 10) %>% select(-education, -coverage, -fruit) # To save space
 ```
 
 <div class="kable-table">
@@ -26,7 +26,7 @@ head(cdc_health, 10) %>% select(-education, -coverage, -fruit) # To save space
 # Descriptive statistics
 
 ``` r
-summary(cdc_health)
+summary(health_2019)
 ```
 
     ##     gender                                      race             age       
@@ -56,8 +56,8 @@ summary(cdc_health)
     ##  smoker                          fruit        coverage           health      
     ##  Yes:128115   Daily                 :151199   Yes:272736   Excellent: 47671  
     ##  No :167435   Weekly                : 89117   No : 22814   Very good:100713  
-    ##               Less than once a month:  1767                Good     : 92493  
-    ##               A few times a year    : 42879                Fair     : 39780  
+    ##               A few times a month   : 42879                Good     : 92493  
+    ##               Less than once a month:  1767                Fair     : 39780  
     ##               Never                 : 10588                Poor     : 14893  
     ##                                                                              
     ## 
@@ -65,7 +65,7 @@ summary(cdc_health)
 # Distribution of health values through the ages
 
 ``` r
-cdc_health %>%
+health_2019 %>%
     ggplot(aes(x = age, fill = health)) + geom_bar(position="fill")
 ```
 
@@ -74,7 +74,7 @@ cdc_health %>%
 # Impact of income and exercise
 
 ``` r
-cdc_health %>%
+health_2019 %>%
     group_by(income, exercise) %>%
     summarise(avg_health = mean(as.numeric(health))) %>%
     ggplot(aes(x = income, y = avg_health, fill = exercise)) + geom_col(position = "dodge") +
