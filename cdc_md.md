@@ -2,6 +2,7 @@
 
 ``` r
 library(tidyverse)
+library(tictoc)                                                 # Tracking compute time
 load("data/health_2019.RData")
 head(health_2019, 10) %>% select(-education, -coverage, -fruit) # To save space
 ```
@@ -62,7 +63,7 @@ summary(health_2019)
     ##                                                                              
     ## 
 
-# Distribution of health values through the ages
+# Distribution of health assessment through the ages
 
 ``` r
 health_2019 %>%
@@ -82,3 +83,127 @@ health_2019 %>%
 ```
 
 ![](cdc_md_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+# Supervised learning
+
+The aim is to explain/predict the health situation with the other
+variables in the data. We use a boosted tree algorithm, see:
+<https://xgboost.readthedocs.io/en/latest/> for documentation.
+
+## Data preparation
+
+We digitize our variables. After processing, the label (*health*) takes
+values 0 = Excellent, …. 4 = Poor. This is to allow for classification
+instead of regression (XGBoost convention).
+
+``` r
+library(xgboost)                                   # Load package
+health_2019 <- health_2019 %>%
+    mutate(BMI = weight/height^2 * 10^4) %>%       # Body Mass index
+    filter(BMI > 15, BMI < 50) %>%                 # Remove outliers
+    select(-BMI)
+train_features <- health_2019 %>% 
+    select(-health, -race, -employment) %>%        # Remove dependent var. + unordered features
+    mutate_if(is.factor, as.numeric) %>%           # Transform gender & exercise in numbers
+    as.matrix()                                    # Force matrix format
+train_label <- as.numeric(health_2019$health)      # Dependent variable
+train_label <- train_label - 1                     # For classification mostly
+train_matrix <- xgb.DMatrix(data = train_features, # XGB format!
+                            label = train_label)  
+```
+
+## Model
+
+The hyperparameters are chosen quite randomly. We refrain from a deep
+structure to reduce computation times.
+
+``` r
+tictoc::tic()
+fit <- train_matrix %>% 
+    xgb.train(data = .,                       # Data source (pipe input)
+              eta = 0.2,                      # Learning rate
+              objective = "reg:squarederror",
+              #objective = "multi:softmax",    # Objective function: another option!
+              #num_class = 5,                  # Number of classes
+              max_depth = 5,                  # Maximum depth of trees
+              subsample = 0.6,                # Proportion of rows per training round
+              lambda = 1,                     # Penalisation of leaf values
+              gamma = 0.1,                    # Penalisation of number of leaves
+              nrounds = 50,                   # Number of trees used
+              verbose = 0                     # No comment
+    )
+tictoc::toc()
+```
+
+    ## 22.106 sec elapsed
+
+Histogram of predicted health scores.
+
+``` r
+hist(predict(fit, train_features), nclass = 50)  # Histograms of predicted values
+```
+
+![](cdc_md_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+Best profile.
+
+``` r
+health_2019[which(min(predict(fit, train_features))==predict(fit, train_features)),]
+```
+
+<div class="kable-table">
+
+| gender | race  | age | weight | height | education                        | employment         | income | urban | exercise | smoker | fruit | coverage | health    |
+| :----- | :---- | --: | -----: | -----: | :------------------------------- | :----------------- | :----- | :---- | :------- | :----- | :---- | :------- | :-------- |
+| Male   | White |  28 |     79 |    211 | Some college or technical school | Employed for wages | \>$75K | No    | Yes      | No     | Daily | Yes      | Very good |
+
+</div>
+
+## Test\!
+
+``` r
+healthy_young_woman <- tibble(
+    gender = 2,
+    age = 20,
+    weight = 60,
+    height = 170,
+    education = 3,
+    income = 3,
+    urban = 1,
+    exercise = 1,
+    smoker = 2,
+    fruit = 1,
+    coverage = 1
+) %>% as.matrix()
+overweight_old_man <- tibble(
+    gender = 1,
+    age = 78,
+    weight = 120,
+    height = 180,
+    education = 3,
+    income = 3,
+    urban = 1,
+    exercise = 2,
+    smoker = 1,
+    fruit = 3,
+    coverage = 0
+) %>% as.matrix()
+predict(fit, healthy_young_woman)    # Young exercising nosmoking female
+```
+
+    ## [1] 1.36897
+
+``` r
+predict(fit, overweight_old_man)  
+```
+
+    ## [1] 2.773975
+
+## Feature importance
+
+``` r
+xgb.importance(model = fit) %>%
+    ggplot(aes(x = Gain, y = reorder(Feature, Gain))) + geom_col() + ylab("Feature")
+```
+
+![](cdc_md_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
