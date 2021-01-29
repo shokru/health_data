@@ -6,6 +6,10 @@ Variable type includes: unordered categorical (nominal), ordered categorical (or
 Only 2 missing points per observations were allowed (other instances were discarded).   
 The full dataset (2015-2019) has over 2M rows. There are 295,550 observations in total in the most recent vintage (2019) when retaining instances with no missing point.
 
+The shared files are:   
+- the full dataset ([RData, 15Mo](/data/health_data.RData))  
+- the cleaned 2019 vintage ([RData, 3Mo](/data/health_2019.RData))  
+
 |**Variable** | Type | Defintion |  Comments |
 |---|---|---|---|
 |**year** | numerical | year the survey was carried out (2015-2019)| |  
