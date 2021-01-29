@@ -4,14 +4,15 @@ The data is a snapshot of the 2015-2019 Behavioral Risk Factor Surveillance Syst
 
 Variable types include: unordered categorical (nominal), ordered categorical (ordinal), binary, numeric.    
 Only 2 missing points per observations were allowed (other instances were discarded).   
-The full dataset (2015-2019) has over 2M rows. There are 295,550 observations in total in the most recent vintage (2019) when retaining instances with no missing point.
+The full dataset (2015-2019) has over 2M rows.  
+There are 295,550 observations in total in the most recent vintage (2019) when retaining instances with no missing point.
 
 The shared files are:   
 - the full dataset ([RData, 15Mo](/data/health_data.RData))  
 - the cleaned 2019 vintage ([RData, 3Mo](/data/health_2019.RData))   
 - the cleaned 2019 vintage ([zipped CSV, 4Mo](/data/health_2019.csv.zip))    
 
-Examples of applications: [here](cdc_md.md).     
+Examples of applications via R code: [here](cdc_md.md).     
 Variable description below.
 
 |**Variable** | Type | Defintion |  Comments |
