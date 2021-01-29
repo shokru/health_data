@@ -1,4 +1,4 @@
-# Dataset from the CDC for relatable data science.
+# Health survey from the CDC for relatable data science.
 
 The data is a snapshot of the 2015-2019 Behavioral Risk Factor Surveillance System (BRFSS) survey from the US Center for Disease Control & Prevention (CDC). The source file can be accessed at: https://www.cdc.gov/brfss/
 
