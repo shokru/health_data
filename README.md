@@ -8,7 +8,7 @@ The full dataset (2012-2020) has over 3.7M rows.
 There are 295,550 observations in total in the most recent vintage (2019) when retaining instances with no missing point.
 
 The shared files are:   
-- the full dataset, 3.7M rows, 15 columns ([RData, 24Mo](/data/health_data.RData)) (CSV file too large to be uploaded in GitHub - available upon request) 
+- the full dataset, 3.7M rows, 15 columns ([zipped RData, 26Mo](/data/health_data.RData)) (CSV file too large to be uploaded in GitHub - available upon request) 
 - the cleaned 2019 vintage, 295K rows, 14 cols ([RData, 3Mo](/data/health_2019.RData)) ([zipped CSV, 4Mo](/data/health_2019.csv.zip))    
 
 **DISCLAIMER**: the data is for pedagocial use only.  
